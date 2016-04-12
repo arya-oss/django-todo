@@ -1,0 +1,10 @@
+# python objects and caches files
+*.pyc
+*.pyo
+# media files
+
+media/
+
+# django setting file
+
+todos/settings.py
