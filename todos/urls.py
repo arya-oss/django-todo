@@ -18,11 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from mauth import urls as auth_urls
 from work import urls as work_urls
+from work.views import index as todo_home
 
 urlpatterns = [
+    url(r'^$', todo_home),
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include(auth_urls)),
-    url(r'^todo/', include(work_urls))
+    url(r'^todo/', include(work_urls)),
 ]
 
 from django.conf import settings
