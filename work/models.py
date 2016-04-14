@@ -11,6 +11,8 @@ class todo(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(blank=True, null=True)
+    is_finished = models.BooleanField(default=False)
     priority = models.CharField(max_length=1)
     def __unicode__(self):
         return self.user.username+" "+self.title

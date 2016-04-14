@@ -1,14 +1,14 @@
 # python objects and caches files
 *.pyc
 *.pyo
+
 # media files
 
+static/images
 media/
 
 # django setting file
-
 todos/settings.py
 
 # db file
-
 arya.sqlite3
