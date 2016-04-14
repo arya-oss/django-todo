@@ -8,3 +8,7 @@ media/
 # django setting file
 
 todos/settings.py
+
+# db file
+
+arya.sqlite3

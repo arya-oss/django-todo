@@ -1,0 +1,47 @@
+{% extends 'layout/header.html'%}
+{%block content%}
+<div class="container">
+<div class="section no-pad-bot">
+    <div class="row">
+        <div class="col s12 m6 l6 offset-l3">
+        <div class="card-panel">
+            <h3 class="center-align">Upload Avatar</h3>
+            {% if uploaded %}
+            	<div class="success chip"> <strong> Successfully Uploaded </strong> <i class='material-icons'>close</i></div>
+            {%endif%}
+            {% if messages %}{%for message in messages %}
+        		<div class="chip {{message.tags}}">
+            		{{ message|safe }}
+            		<i class="material-icons">close</i>
+        		</div>
+    		{%endfor%}{%endif%}
+    		<form action="/auth/upload/" enctype="multipart/form-data" method="post">
+          {%csrf_token%}
+    			<div class="file-field input-field">
+      				<div class="btn"><span>File</span><input type="file" name="picture"></div>
+      				<div class="file-path-wrapper">
+        				<input class="file-path validate" type="text">
+      				</div>
+		            <div class="row">
+		                <button type="submit" class="btn waves-effect">Upload</button>
+		            </div>
+    			</div>
+    		</form>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+{%endblock%}
+
+{%block foots%}
+    <script>
+        (function($){
+            $('.dropdown-button').dropdown({
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+            });
+            $('.button-collapse').sideNav();
+            $('select').material_select();
+        })(jQuery);
+    </script>
+{%endblock%}

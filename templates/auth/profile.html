@@ -1,0 +1,87 @@
+{% extends 'layout/header.html'%}
+{%block content%}
+<div class="container">
+<div class="section no-pad-bot">
+    <div class="row">
+        <div class="col s12 m12 l8 offset-l2">
+        <div class="card-panel">
+            <h3 class="blue-text center-align">My Profile</h3>
+            {%if messages%}{%for message in messages%}
+                <div class="chip {{message.tags}}">
+                {{message|safe}}<i class='material-icons'>close</i>
+                </div>
+            {%endfor%}{%endif%}
+            <form action='/auth/profile/' method='post'>
+                {%csrf_token%}
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" name="first_name" id="first_name" class="validate" value="{{ user.first_name }}">
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" name="last_name" id="last_name" class="validate" value="{{ user.last_name }}"/>
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" name="username" id="username" class="validate" value="{{ user.username }}" disabled/>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type='date' name="birthdate" id="dateofbirth" class="datepicker" value="{{ user.userprofile.birthdate|date:'Y-m-d'}}" />
+                    </div>
+                    <div class="input-field col s6">
+                        <select name="gender" id="gender" value="{{user.userprofile.gender}}">
+                            <option value="M"> Male</option>
+                            <option value="F"> Female</option>
+                            <option value="O"> Others</option>
+                        </select>
+                        <label for="gender">Gender</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" name="email" class="validate" value="{{user.email}}" />
+                        <label for="email">Email ID</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="tel" name="phone" id="phone" class="validate" value="{{user.userprofile.phone}}">
+                        <label for="phone">Phone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <button class="btn waves-effect waves-light blue" type="submit">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div><!-- ./row -->
+</div><!-- ./section -->
+</div><!-- ./container -->
+{%endblock%}
+{%block foots%}
+    <script>
+        (function($){
+            $('.dropdown-button').dropdown({
+                constrain_width: true, // Does not change width of dropdown to that of the activator
+            });
+            $('.button-collapse').sideNav();
+            $('select').material_select();
+            $('.datepicker').pickadate({
+                min: new Date(1990, 1,1),
+                max: new Date(),
+                selectMonths:true,
+                format:'yyyy-mm-dd',
+                formatSubmit:'yyyy-mm-dd',
+                selectYears:true,
+            });
+        })(jQuery);
+    </script>
+{%endblock%}
