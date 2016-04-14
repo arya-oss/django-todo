@@ -1,4 +1,15 @@
 {% extends 'layout/header.html'%}
 {%block content%}
-    <h2>{{author}}</h2>
+
+{%endblock%}
+{%block foots%}
+<script>
+(function($){
+	$('select').material_select();
+	$('.dropdown-btn').dropdown({
+		constrain-widht: true,
+	});
+	$('ul.tabs').tabs();
+})(jQuery);
+</script>
 {%endblock%}

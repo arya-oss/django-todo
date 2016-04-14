@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 
 def index(req):
-    return HttpResponse(req, 'You wanna go to todos home ?')
+    return render(req, 'todo/index.html', {'title': 'Home'})
 
+@login_required(login_url='/auth/login/')
 def list(req):
-    return render(req, 'todo/list.html', { 'title':'ToDos | List', 'author': 'Rajmani Arya'})
+    return render(req, 'todo/list.html', { 'title':'List', 'author': 'Rajmani Arya'})
